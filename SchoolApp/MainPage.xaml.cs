@@ -1,22 +1,26 @@
-﻿namespace SchoolApp;
+﻿using SchoolApp.ViewModels;
 
-public partial class MainPage : ContentPage
+namespace SchoolApp
 {
-    private int _count = 0;
-
-    public MainPage()
+    public partial class MainPage : ContentPage
     {
-        InitializeComponent();
-    }
+        int count = 0;
 
-    private void OnCheckClicked(object sender, EventArgs e)
-    {
-        _count++;
-        StatusLabel.Text = $"Button clicked: {_count} times";
-    }
+        public MainPage()
+        {
+            InitializeComponent();
+            BindingContext = new Person();
+        }
 
-    private async void OnOpenStudentsClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(StudentsPage));
+        private void OnCounterClicked(object? sender, EventArgs e)
+        {
+            count++;
+            StatusLabel.Text = $"Button clicked: {count} times";
+        }
+
+        private async void OnOpenStudentsClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(StudentsPage));
+        }
     }
 }
